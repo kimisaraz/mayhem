@@ -10,20 +10,21 @@ class DarlingColumnParser
     self.column_uris = []
   end
 
-  # def extract_article
-  #   dummy_column_uris = ["2008-06-23.html", "2008-06-30.html"]
-  #   dummy_column_uris.each do |column_uri|
-  #     uri = File.join(base_uri, column_uri)
-  #     html = open(uri, 'r:Shift_JIS:UTF-8').read.encode('UTF-8', 'Shift_JIS')
+  def extract_article
+    dummy_column_uris = ["2008-06-23.html", "2008-06-30.html"]
 
-  #     doc = Nokogiri::HTML(html, nil, 'UTF-8')
-  #     doc.css('table[width = "500"] td').each do |node|
-  #       puts node.inner_text
-  #     end
+    dummy_column_uris.each do |column_uri|
+      uri = File.join(BASE_URI, column_uri)
+      html = open(uri, 'r:Shift_JIS:UTF-8').read.encode('UTF-8', 'Shift_JIS')
 
-  #     sleep(5)
-  #   end
-  # end
+      doc = Nokogiri::HTML(html, nil, 'UTF-8')
+      doc.css('table[width = "500"] td').each do |node|
+        puts node.inner_text
+      end
+
+      sleep(5)
+    end
+  end
 
   def extract_column_uris
     open_uris.each do |uri|
