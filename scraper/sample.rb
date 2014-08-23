@@ -1,10 +1,10 @@
 require 'open-uri'
 require 'nokogiri'
 
-uri = 'http://www.google.com'
+uri = 'https://www.google.com'
 
 charset = nil
-html = open(uri) do |f|
+html = open(uri, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE) do |f|
   charset = f.charset
   f.read
 end
