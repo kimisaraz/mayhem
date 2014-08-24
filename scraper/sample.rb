@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
-uri = 'https://www.google.com'
+uri = 'https://www.google.co.jp/search?q=nokogiri'
 
 charset = nil
 html = open(uri, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE) do |f|
@@ -10,5 +10,6 @@ html = open(uri, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE) do |f|
 end
 
 doc = Nokogiri::HTML(html, nil, charset)
-
-puts doc.title
+doc.css('cite').each do |node|
+  puts node.text
+end
