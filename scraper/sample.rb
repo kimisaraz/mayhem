@@ -10,6 +10,7 @@ html = open(uri, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE) do |f|
 end
 
 doc = Nokogiri::HTML(html, nil, charset)
-doc.css('cite').each do |node|
-  puts node.text
+doc.css('li.g').each do |node|
+  puts node.css('h3').inner_text
+  puts node.css('cite').inner_text
 end
