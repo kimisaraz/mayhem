@@ -10,7 +10,6 @@ html = open(uri) do |f|
 end
 
 doc = Nokogiri::HTML(html, nil, charset)
-doc.css('a').each do |node|
-  href = node.attribute('href')
-  puts href.value if href
+doc.css('table:last-child td:first-child > a').each do |node|
+  puts node.attribute('href').value
 end
