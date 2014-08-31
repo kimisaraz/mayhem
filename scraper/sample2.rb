@@ -15,4 +15,6 @@ module DarlingColumnParser
   end
 end
 
-DarlingColumnParser.extract_links
+if __FILE__ == $0
+  DarlingColumnParser.extract_links
+end
