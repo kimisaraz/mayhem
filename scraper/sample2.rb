@@ -15,6 +15,6 @@ module DarlingColumnParser
   end
 end
 
-if __FILE__ == $0
+if __FILE__ == $PROGRAM_NAME
   DarlingColumnParser.extract_links
 end
