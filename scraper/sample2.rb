@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class DarlingColumnParser
-  def extract_links
+  def extract_destinations
     uri = 'http://www.1101.com/darling_column/'
 
     html = open(uri, 'r:Shift_JIS').read.encode('UTF-8', 'Shift_JIS')
@@ -16,5 +16,5 @@ class DarlingColumnParser
 end
 
 if __FILE__ == $PROGRAM_NAME
-  DarlingColumnParser.new.extract_links
+  DarlingColumnParser.new.extract_destinations
 end
