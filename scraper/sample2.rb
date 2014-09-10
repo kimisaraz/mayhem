@@ -19,6 +19,8 @@ class DarlingColumnParser
       doc.css('table[width = "500"] td').each do |node|
         puts node.inner_text
       end
+
+      sleep(5)
     end
   end
 
