@@ -9,20 +9,20 @@ class DarlingColumnParser
     self.destinations = []
   end
 
-  def extract_article
-    dummy_destinations = ["2008-06-23.html", "2008-06-30.html"]
-    dummy_destinations.each do |destination|
-      uri = File.join(base_uri, destination)
-      html = open(uri, 'r:Shift_JIS:UTF-8').read.encode('UTF-8', 'Shift_JIS')
+  # def extract_article
+  #   dummy_destinations = ["2008-06-23.html", "2008-06-30.html"]
+  #   dummy_destinations.each do |destination|
+  #     uri = File.join(base_uri, destination)
+  #     html = open(uri, 'r:Shift_JIS:UTF-8').read.encode('UTF-8', 'Shift_JIS')
 
-      doc = Nokogiri::HTML(html, nil, 'UTF-8')
-      doc.css('table[width = "500"] td').each do |node|
-        puts node.inner_text
-      end
+  #     doc = Nokogiri::HTML(html, nil, 'UTF-8')
+  #     doc.css('table[width = "500"] td').each do |node|
+  #       puts node.inner_text
+  #     end
 
-      sleep(5)
-    end
-  end
+  #     sleep(5)
+  #   end
+  # end
 
   def extract_destinations(*uris)
     uris.each do |uri|
