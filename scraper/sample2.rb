@@ -4,16 +4,16 @@ require 'nokogiri'
 class DarlingColumnParser
   BASE_URI = 'http://www.1101.com/darling_column'
 
-  attr_accessor :destinations
+  attr_accessor :column_uris
 
   def initialize
-    self.destinations = []
+    self.column_uris = []
   end
 
   # def extract_article
-  #   dummy_destinations = ["2008-06-23.html", "2008-06-30.html"]
-  #   dummy_destinations.each do |destination|
-  #     uri = File.join(base_uri, destination)
+  #   dummy_column_uris = ["2008-06-23.html", "2008-06-30.html"]
+  #   dummy_column_uris.each do |column_uri|
+  #     uri = File.join(base_uri, column_uri)
   #     html = open(uri, 'r:Shift_JIS:UTF-8').read.encode('UTF-8', 'Shift_JIS')
 
   #     doc = Nokogiri::HTML(html, nil, 'UTF-8')
@@ -31,13 +31,13 @@ class DarlingColumnParser
     end
   end
 
-  def extract_destinations(*uris)
+  def extract_column_uris(*uris)
     uris.each do |uri|
       html = open(uri, 'r:Shift_JIS:UTF-8').read.encode('UTF-8', 'Shift_JIS')
 
       doc = Nokogiri::HTML(html, nil, 'UTF-8')
       doc.css('table[cellspacing = "3"] td:nth-child(2) a').each do |node|
-        destinations << URI.join(uri, node.attribute('href').value).to_s
+        column_uris << URI.join(uri, node.attribute('href').value).to_s
       end
 
       sleep(5)
@@ -47,6 +47,6 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   parser = DarlingColumnParser.new
-  parser.extract_destinations(*(parser.archive_uris))
-  p parser.destinations
+  parser.extract_column_uris(*(parser.archive_uris))
+  p parser.column_uris
 end
