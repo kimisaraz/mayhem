@@ -25,11 +25,9 @@ class DarlingColumnParser
   #   end
   # end
 
-  def archive_uris
-    uris = (1..11).map do |num|
-      format("#{BASE_URI}archive/archive%02d.html", num)
-    end
-    uris << BASE_URI
+  def open_uris
+    archive_uris = (1..11).map { |num| format("#{BASE_URI}archive/archive%02d.html", num) }
+    archive_uris << BASE_URI
   end
 
   def extract_column_uris(*uris)
@@ -50,6 +48,6 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   parser = DarlingColumnParser.new
-  parser.extract_column_uris(*(parser.archive_uris))
+  parser.extract_column_uris(*(parser.open_uris))
   p parser.column_uris
 end
