@@ -2,7 +2,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class DarlingColumnParser
-  BASE_URI = 'http://www.1101.com/darling_column'
+  BASE_URI = 'http://www.1101.com/darling_column/'
 
   attr_accessor :column_uris
 
@@ -26,9 +26,10 @@ class DarlingColumnParser
   # end
 
   def archive_uris
-    (1..11).map do |num|
-      format("#{BASE_URI}/archive/archive%02d.html", num)
+    uris = (1..11).map do |num|
+      format("#{BASE_URI}archive/archive%02d.html", num)
     end
+    uris << BASE_URI
   end
 
   def extract_column_uris(*uris)
@@ -42,6 +43,8 @@ class DarlingColumnParser
 
       sleep(5)
     end
+
+    column_uris << BASE_URI
   end
 end
 
