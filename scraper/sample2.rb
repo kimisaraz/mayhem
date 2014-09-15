@@ -25,13 +25,10 @@ class DarlingColumnParser
   #   end
   # end
 
-  def open_uris
-    archive_uris = (1..11).map { |num| format("#{BASE_URI}archive/archive%02d.html", num) }
-    archive_uris << BASE_URI
-  end
+  def extract_column_uris
+    open_uris.each do |uri|
+      puts "Parsing #{uri}"
 
-  def extract_column_uris(*uris)
-    uris.each do |uri|
       html = open(uri, 'r:Shift_JIS:UTF-8').read.encode('UTF-8', 'Shift_JIS')
 
       doc = Nokogiri::HTML(html, nil, 'UTF-8')
@@ -44,10 +41,17 @@ class DarlingColumnParser
 
     column_uris << BASE_URI
   end
+
+  private
+
+  def open_uris
+    archive_uris = (1..11).map { |num| format("#{BASE_URI}archive/archive%02d.html", num) }
+    archive_uris << BASE_URI
+  end
 end
 
 if __FILE__ == $PROGRAM_NAME
   parser = DarlingColumnParser.new
-  parser.extract_column_uris(*(parser.open_uris))
+  parser.extract_column_uris
   p parser.column_uris
 end
