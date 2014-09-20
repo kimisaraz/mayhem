@@ -51,6 +51,12 @@ class DarlingColumnParser
     }
   end
 
+  def sample_column_uri
+    File.open("#{__dir__}/darling_column_uris.txt", 'r') { |f|
+      f.readlines.sample.chomp
+    }
+  end
+
   private
 
   def open_uris
@@ -61,7 +67,8 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   parser = DarlingColumnParser.new
-  parser.extract_column_uris
-  parser.save_column_uris
-  p parser.column_uris
+  # parser.extract_column_uris
+  # parser.save_column_uris
+  # p parser.column_uris
+  p parser.sample_column_uri
 end
