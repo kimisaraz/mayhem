@@ -28,17 +28,17 @@ class DarlingColumnParser
   end
 
   def save_column_uris
-    File.open("#{__dir__}/darling_column_uris.txt", 'w') { |f|
+    File.open("#{__dir__}/darling_column_uris.txt", 'w') do |f|
       column_uris.each do |column_uri|
         f.puts column_uri
       end
-    }
+    end
   end
 
   def sample_column_uri
-    File.open("#{__dir__}/darling_column_uris.txt", 'r') { |f|
+    File.open("#{__dir__}/darling_column_uris.txt", 'r') do |f|
       f.readlines.sample.chomp
-    }
+    end
   end
 
   # def extract_article
