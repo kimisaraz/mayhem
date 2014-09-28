@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'nokogiri'
 
+# Parser for http://www.1101.com/darling_column/
 class DarlingColumnParser
   BASE_URI = 'http://www.1101.com/darling_column/'
 
