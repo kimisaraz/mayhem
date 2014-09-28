@@ -60,7 +60,9 @@ class DarlingColumnParser
   private
 
   def open_uris
-    archive_uris = (1..11).map { |num| format("#{BASE_URI}archive/archive%02d.html", num) }
+    archive_uris = (1..11).map do |num|
+      format("#{BASE_URI}archive/archive%02d.html", num)
+    end
     archive_uris << BASE_URI
   end
 end
